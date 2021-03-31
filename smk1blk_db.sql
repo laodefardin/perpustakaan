@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2021 at 02:04 PM
+-- Generation Time: Mar 31, 2021 at 01:56 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -32,7 +32,9 @@ CREATE TABLE IF NOT EXISTS `tb_anggota` (
   `tempat_lahir` varchar(100) COLLATE latin1_general_ci NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jk` enum('l','p') COLLATE latin1_general_ci NOT NULL,
-  `kelas` enum('I','II','III','IV','V','VI') COLLATE latin1_general_ci NOT NULL,
+  `kelas` enum('X','XI','XII') COLLATE latin1_general_ci NOT NULL,
+  `username` varchar(500) COLLATE latin1_general_ci NOT NULL,
+  `password` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
@@ -40,11 +42,10 @@ CREATE TABLE IF NOT EXISTS `tb_anggota` (
 -- Dumping data for table `tb_anggota`
 --
 
-INSERT INTO `tb_anggota` (`nis`, `nama`, `tempat_lahir`, `tgl_lahir`, `jk`, `kelas`, `tgl_input`) VALUES
-(2016210004, 'Narti', 'Makassar', '2019-07-16', 'p', 'V', '2019-07-28 14:30:30'),
-(2016210002, 'Putri Mawar', 'Makassar', '2019-07-03', 'p', 'VI', '2019-07-31 19:33:02'),
-(2016210003, 'Dony Pratama', 'Makassar', '2019-07-12', 'p', 'V', '2019-07-28 21:42:43'),
-(2016210001, 'Nawirah', 'Makassar', '2019-07-02', 'l', 'VI', '2019-07-28 21:43:12');
+INSERT INTO `tb_anggota` (`nis`, `nama`, `tempat_lahir`, `tgl_lahir`, `jk`, `kelas`, `username`, `password`, `tgl_input`) VALUES
+(2016210001, 'Andi Nurqamal Ady Putra', 'Bulukumba', '1996-02-01', 'l', 'XII', 'nurka', '96de4eceb9a0c2b9b52c0b618819821b', '2021-03-30 12:49:15'),
+(2016210005, 'Nurfahmi Ahmad', 'Bulukumba', '1996-12-03', 'l', 'XI', 'fahmi', '96de4eceb9a0c2b9b52c0b618819821b', '2021-03-30 12:49:19'),
+(2016210007, 'Yuliana', 'Bulukumba', '1996-07-05', 'p', 'X', 'yuli', '96de4eceb9a0c2b9b52c0b618819821b', '2021-03-30 12:49:24');
 
 -- --------------------------------------------------------
 
@@ -62,14 +63,15 @@ CREATE TABLE IF NOT EXISTS `tb_buku` (
   `jumlah_buku` int(11) NOT NULL,
   `lokasi` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Dumping data for table `tb_buku`
 --
 
 INSERT INTO `tb_buku` (`id_buku`, `judul`, `pengarang`, `penerbit`, `tahun_terbit`, `isbn`, `jumlah_buku`, `lokasi`, `tgl_input`) VALUES
-(27, 'Bahasa Indonesia', 'Nurul Akhma', 'Erlangga', '2008', '1234556', 1, 'Rak 2', '2019-08-06 11:51:22');
+(27, 'Bahasa Indonesia', 'Nurul Akhma', 'Erlangga', '2008', '1234556', 1, 'Rak 2', '2021-03-31 11:40:55'),
+(28, 'TIK', 'Budi', 'Bumi Aksara', '1992', '1234576890', 0, 'Rak 1', '2021-03-25 16:09:30');
 
 -- --------------------------------------------------------
 
@@ -107,15 +109,16 @@ CREATE TABLE IF NOT EXISTS `tb_transaksi` (
   `tgl_kembali` varchar(30) COLLATE latin1_general_ci NOT NULL,
   `status` varchar(100) COLLATE latin1_general_ci NOT NULL,
   `tgl_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=380 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=386 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Dumping data for table `tb_transaksi`
 --
 
 INSERT INTO `tb_transaksi` (`id`, `id_buku`, `judul`, `nis`, `nama`, `tgl_pinjam`, `tgl_kembali`, `status`, `tgl_input`) VALUES
-(379, 27, 'Bahasa Indonesia', 2016210004, 'Narti', '02-08-2019', '01-08-2020', 'Pinjam', '2019-08-02 12:10:18'),
-(377, 27, 'Bahasa Indonesia', 2016210002, 'Putri Mawar', '02-08-2019', '01-08-2020', 'Pinjam', '2019-08-02 12:07:59');
+(384, 27, 'Bahasa Indonesia', 2016210007, 'Yuliana', '31-03-2021', '07-04-2021', 'Pinjam', '2021-03-31 11:38:37'),
+(382, 27, 'Bahasa Indonesia', 2016210005, 'Nurfahmi Ahmad', '24-03-2021', '31-03-2021', 'Pinjam', '2021-03-24 13:41:38'),
+(383, 28, 'TIK', 2016210001, 'Andi Nurqamal Ady Putra', '25-03-2021', '01-04-2021', 'Pinjam', '2021-03-25 16:09:30');
 
 -- --------------------------------------------------------
 
@@ -130,17 +133,16 @@ CREATE TABLE IF NOT EXISTS `tb_user` (
   `nama` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `level` enum('admin','user') COLLATE latin1_general_ci NOT NULL,
   `foto` varchar(200) COLLATE latin1_general_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id`, `username`, `password`, `nama`, `level`, `foto`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin', 'My-Account-Icon.jpg'),
-(2, 'user', 'user', 'user', 'user', 'login.png'),
-(11, 'narti', 'narti', 'Narti', 'user', 'My-Account-Icon.jpg'),
-(10, 'nurul', 'nurul', 'Nurul Husnul', 'admin', 'My-Account-Icon.jpg');
+(14, 'admin', '66b65567cedbc743bda3417fb813b9ba', 'Administrator', 'admin', 'download.png'),
+(12, 'nurqa', '96de4eceb9a0c2b9b52c0b618819821b', 'Andi Nurqamal Ady Putra', 'admin', 'download.png'),
+(13, 'andy', '96de4eceb9a0c2b9b52c0b618819821b', 'Andi Nurqamal Ady Putra', 'user', 'download.png');
 
 --
 -- Indexes for dumped tables
@@ -184,7 +186,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_buku`
 --
 ALTER TABLE `tb_buku`
-MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `tb_lokasi`
 --
@@ -194,12 +196,12 @@ MODIFY `id_lokasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=380;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=386;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
