@@ -14,7 +14,7 @@
     <div class="card-header">
         <i class="fas fa-table mr-1"></i>
         Data Anggota 
-        <a href="?page=anggota&aksi=tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+        <a href="?page=anggota&aksi=tambah" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus"></i> Tambah Data</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">

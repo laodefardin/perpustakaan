@@ -24,7 +24,7 @@
                                         <div>
                                             
                                             <input type="submit" name="cetak" value="Cetak" target="blank"  class="btn btn-primary">
-                                             <a href="./laporan/laporan_anggota.php" class="btn btn-default" target="blank" style="margin-top: 8px; margin-left: 5px;"> Cetak Semua</a>
+                                             <a href="./laporan/laporan_anggota.php" class="btn btn-success" target="blank" > Cetak Semua</a>
                                         </div>
                                  </div>
 

@@ -23,7 +23,7 @@
 
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input class="form-control" name="pass" type="Password" id="pass" value="<?php echo $data['password'];?>"/>
+                                            <input class="form-control" name="pass" type="Password" id="pass" />
                                             
                                         </div>
 

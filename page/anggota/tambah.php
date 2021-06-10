@@ -128,22 +128,20 @@
 
 
  	if ($simpan) {
- 		
- 		$sql = $koneksi->query("insert into tb_anggota (nis, nama, tempat_lahir, tgl_lahir, jk, kelas, username, password )values('$nis', '$nama', '$tmpt_lahir', '$tgl_lahir', '$jk', '$kelas', $user, $passbaru)");
+        
+ 		$sql = "INSERT INTO tb_anggota (nis, nama, tempat_lahir, tgl_lahir, jk, kelas, username, password ) VALUES ('$nis', '$nama', '$tmpt_lahir', '$tgl_lahir', '$jk', '$kelas', '$user', '$passbaru')";
+        $proses = $koneksi->query($sql);
+ 		// $sql = $koneksi->query("INSERT INTO tb_anggota (nis, nama, tempat_lahir, tgl_lahir, jk, kelas, username, password ) VALUES ('$nis', '$nama', '$tmpt_lahir', '$tgl_lahir', '$jk', '$kelas', $user, $passbaru)");
 
- 		if ($sql) {
+ 		if ($proses) {
  			?>
  				<script type="text/javascript">
  					
  					alert ("Data Berhasil Disimpan");
  					window.location.href="?page=anggota";
-
  				</script>
  			<?php
  		}
  	}
 
- ?>
-                             
-                             
-
+?>
