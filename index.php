@@ -165,9 +165,9 @@
                                     }elseif ($aksi == "tambah") {
                                         include "page/ebook/tambah.php";
                                     }elseif ($aksi == "ubah") {
-                                        include "page/lokasi/ubah.php";
+                                        include "page/ebook/ubah.php";
                                     }elseif ($aksi == "hapus") {
-                                        include "page/lokasi/hapus.php";
+                                        include "page/ebook/hapus.php";
                                     }
                                 }elseif ($page == "anggota" ) {
                                     if ($aksi == "") {

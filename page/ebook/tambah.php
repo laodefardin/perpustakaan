@@ -9,8 +9,11 @@
             alert("Pengarang Tidak Boleh Kosong");
             form.pengarang.focus();
             return (false);
-
-            return (true);
+        }
+        if (form.file.value=="") {
+            alert("File Ebook Tidak Boleh Kosong");
+            form.file.focus();
+            return (false);
         }
 </script>
 
@@ -22,7 +25,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <form method="POST" onsubmit="return validasi(this)">
+                <form method="POST" enctype="multipart/form-data" onsubmit="return validasi(this)" >
                     <div class="form-group">
                         <label>Judul</label>
                         <input class="form-control" name="judul" id="judul" />
@@ -40,7 +43,7 @@
                         <select class="form-control" name="tahun">
                             <?php
                             $tahun = date("Y");
-                            for ($i=$tahun-29; $i <= $tahun; $i++) { 
+                            for ($i=$tahun-30; $i <= $tahun; $i++) { 
                                 echo'
                                     <option value="'.$i.'">'.$i.'</option>
                                 ';
@@ -51,11 +54,10 @@
 
                     <div class="form-group">
                     <label>Upload Ebook</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" name='ebookfile' id="ebookfile" />
                     </div>
 
                     <div>
-
                         <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
                     </div>
             </div>
@@ -68,27 +70,27 @@
 
 
 <?php
-
     $judul = $_POST ['judul'];
     $pengarang = $_POST ['pengarang'];
-    $penerbit = $_POST ['penerbit'];
     $tahun = $_POST ['tahun'];
+
+    $file = $_FILES['ebookfile']['name'];
+    $lokasi = $_FILES['ebookfile']['tmp_name'];
+    $upload = move_uploaded_file($lokasi, "ebook/".$file);
 
     $simpan = $_POST ['simpan'];
 
 
     if ($simpan) {
-        
-        $sql = $koneksi->query("INSERT INTO tb_buku (judul, pengarang, penerbit, tahun_terbit, isbn, jumlah_buku, lokasi) VALUES ('$judul', '$pengarang', '$penerbit', '$tahun', '$isbn', '$jumlah', '$lokasi')");
-
+        $sql = $koneksi->query("INSERT INTO tb_ebook (judul, pengarang, tahun_terbit, link) VALUES ('$judul','$pengarang','$tahun','$file')");
+        // $sql = $koneksi->query("INSERT INTO tb_ebook (judul, pengarang, tahun_terbit, link) VALUES ('$judul','$pengarang','$tahun','$file')");
         if ($sql) {
             ?>
 <script type="text/javascript">
     alert("Data Berhasil Disimpan");
-    window.location.href = "?page=buku";
+    window.location.href = "?page=ebook";
 </script>
 <?php
         }
     }
-
 ?>

@@ -51,9 +51,10 @@
                             <td><?php echo $data['judul'];?></td>
                             <td><?php echo $data['pengarang'];?></td>
                             <td align="center"><?php echo $data['tahun_terbit'];?></td>
+                            <td> <a href="./ebook/<?= $data['link'];?>" target="_blank" ><?= $data['link'];?></a> </td>
                             <td align="center">
-                                <a href="?page=ebook&aksi=ubah&id_buku=<?php echo $data['id_ebook']; ?>" class="btn btn-warning" ><i class="fa fa-edit"></i> Ubah</a>
-                                <a onclick="return confirm('Anda yakin ingin menghapus?')" href="?page=ebook&aksi=hapus&id_buku=<?php echo $data['id_ebook']; ?>" class="btn btn-danger" ><i class="fa fa-trash"></i> Hapus</a>
+                                <a href="?page=ebook&aksi=ubah&id=<?php echo $data['id_ebook']; ?>" class="btn btn-warning" ><i class="fa fa-edit"></i> Ubah</a>
+                                <a onclick="return confirm('Anda yakin ingin menghapus?')" href="?page=ebook&aksi=hapus&id=<?php echo $data['id_ebook']; ?>" class="btn btn-danger" ><i class="fa fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php  } ?>
