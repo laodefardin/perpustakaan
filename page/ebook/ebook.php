@@ -12,9 +12,12 @@
 </div>
 <div class="card mb-4">
     <div class="card-header">
+        
         <i class="fas fa-table mr-1"></i>
         Data Ebook 
+        <?php if ($_SESSION['admin']) {?>
         <a href="?page=ebook&aksi=tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+        <?php } ?>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -26,7 +29,9 @@
                         <th>Pengarang</th>
                         <th>Tahun</th>
                         <th>Link</th>
+                        <?php if ($_SESSION['admin']) {?>
                         <th width="21%">Aksi</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tfoot>
@@ -36,7 +41,9 @@
                         <th>Pengarang</th>
                         <th>Tahun</th>
                         <th>Link</th>
+                        <?php if ($_SESSION['admin']) {?>
                         <th width="21%">Aksi</th>
+                        <?php } ?>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -52,10 +59,12 @@
                             <td><?php echo $data['pengarang'];?></td>
                             <td align="center"><?php echo $data['tahun_terbit'];?></td>
                             <td> <a href="./ebook/<?= $data['link'];?>" target="_blank" ><?= $data['link'];?></a> </td>
+                            <?php if ($_SESSION['admin']) {?>
                             <td align="center">
                                 <a href="?page=ebook&aksi=ubah&id=<?php echo $data['id_ebook']; ?>" class="btn btn-warning" ><i class="fa fa-edit"></i> Ubah</a>
                                 <a onclick="return confirm('Anda yakin ingin menghapus?')" href="?page=ebook&aksi=hapus&id=<?php echo $data['id_ebook']; ?>" class="btn btn-danger" ><i class="fa fa-trash"></i> Hapus</a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php  } ?>
                 </tbody>

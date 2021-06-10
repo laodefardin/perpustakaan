@@ -93,6 +93,11 @@
                             Transaksi
                         </a>
 
+                        <a class="nav-link" href="?page=ebook">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Ebook
+                        </a>
+
                         <?php if ($_SESSION['admin']) {?>
                         <div class="sb-sidenav-menu-heading">Lain-lain</div>
                         <a class="nav-link" href="?page=pengguna">
